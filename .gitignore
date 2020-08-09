@@ -2,7 +2,7 @@
 
 # dependencies
 frontend/node_modules
-database/node_modules
+api/node_modules
 /.pnp
 .pnp.js
 
