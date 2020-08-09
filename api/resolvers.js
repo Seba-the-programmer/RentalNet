@@ -1,3 +1,5 @@
+import * as userService from './services/user'
+
 export default{
     Query: {
         allMovies: (parent, args, { models }) =>
@@ -18,7 +20,7 @@ export default{
         deleteMovie: (parent, { id }, { models }) =>
         models.movies.destroy({ Where: { id } }),
         addUser: (parent, { username, email, auth, pass }, { models }) =>
-        models.users.create({ username, email, auth, pass }),
+        userService.register(username, email, auth, pass),
         updateUser: (parent, { id, username, email, auth, pass }, { models }) =>
         models.users.update({ username, email, auth, pass }, { Where: { id } }),
         deleteUser: (parent, { id }, { models }) =>
