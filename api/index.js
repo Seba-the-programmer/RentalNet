@@ -1,5 +1,4 @@
 const express = require('express')
-//const bodyParser = require('body-parser')
 const { graphqlHTTP } = require('express-graphql')
 const {makeExecutableSchema} = require('graphql-tools')
 import resolvers from './resolvers'

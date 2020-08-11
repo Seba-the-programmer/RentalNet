@@ -6,6 +6,7 @@ api/node_modules
 api/config/config.json
 /.pnp
 .pnp.js
+api/services/authorization.js
 
 # testing
 /coverage

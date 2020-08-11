@@ -1,0 +1,3 @@
+const AUTHORIZATION_CODE = 'example'
+
+export default AUTHORIZATION_CODE

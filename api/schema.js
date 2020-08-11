@@ -18,10 +18,10 @@ export default`
     }
 
     type Query {
-        allMovies: [movies!]!
-        getMovie(id: Int!): movies
-        allUsers: [users!]!
-        getUser(id: Int!): users
+        allMovies(code: String): [movies!]!
+        getMovie(id: Int! code: String): movies
+        allUsers(code: String): [users!]!
+        getUser(id: Int! code: String): users
     }
 
     type Mutation {
@@ -30,24 +30,32 @@ export default`
             price: Float!
             date: String
             author: String
-            url: String!): movies
+            url: String!
+            code: String): movies
+
         updateMovie(id: Int!
             title: String
             desc: String
             price: Float
             date: String
             author: String
-            url: String): [Int!]
-        deleteMovie(id: Int!): Int!
+            url: String
+            code: String): [Int!]
+
+        deleteMovie(id: Int! code: String): Int!
+
         addUser(username: String!
             email: String!
             auth: String!
-            pass: String!): users
+            pass: String!
+            code: String): users
+
         updateUser(id: Int!
             username: String
             email: String
             auth: String
-            pass: String): [Int!]
-        deleteUser(id: Int!): Int!
+            pass: String
+            code: String): [Int!]
+        deleteUser(id: Int! code: String): Int!
     }
 `
