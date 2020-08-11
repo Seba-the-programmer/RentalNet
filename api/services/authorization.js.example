@@ -1,3 +1,16 @@
+import models from '../db/models'
+import * as userService from './user'
+
 const AUTHORIZATION_CODE = 'example'
 
-export default AUTHORIZATION_CODE
+const authorize = (query, code) => {
+    if(code == AUTHORIZATION_CODE)
+    {
+        return query
+    }
+    else {
+        return ""
+    }
+}
+
+export default authorize

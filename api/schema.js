@@ -7,6 +7,7 @@ export default`
         date: String
         author: String
         url: String!
+        code: String
     }
 
     type users {
@@ -15,13 +16,14 @@ export default`
         email: String!
         auth: String!
         pass: String!
+        code: String
     }
 
     type Query {
         allMovies(code: String): [movies!]!
         getMovie(id: Int! code: String): movies
         allUsers(code: String): [users!]!
-        getUser(id: Int! code: String): users
+        getUser(id: Int! code: String!): users
     }
 
     type Mutation {
@@ -46,7 +48,6 @@ export default`
 
         addUser(username: String!
             email: String!
-            auth: String!
             pass: String!
             code: String): users
 
