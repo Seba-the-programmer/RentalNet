@@ -22,8 +22,5 @@ app.use('/api',
         graphiql: true
     })
 )
-app.use('/', (req, res, next)=> {
-    res.send('<h1>You are not allowed to be here!!!</h1>')
-})
 
-app.listen(3000)
+app.listen(3005)
