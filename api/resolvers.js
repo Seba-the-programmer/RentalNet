@@ -42,8 +42,11 @@ export default{
         addUser: (parent, { username, email, pass, code }, { models }) =>
             authorize(userService.register(username, email, pass), code),
 
-        updateUser: (parent, { id, username, email, pass, code }, { models }) =>
-            authorize(models.users.update({ username, email, auth, pass }, { where: { id } }), code),
+        updateUser: (parent, { id, username, email, code }, { models }) =>
+            authorize(models.users.update({ username, email}, { where: { id } }), code),
+
+        updatePassword: (parent, { id, pass, code }, { models }) =>
+            authorize(userService.update(id, pass), code),
 
         deleteUser: (parent, { id, code }, { models }) =>
             authorize(models.users.destroy({ where: { id } }), code),

@@ -78,6 +78,8 @@ export default`
 
         loginUser(username: String! pass: String! code: String): authUser
 
+        updatePassword(id: Int! pass: String! code: String): [Int!]
+
         createLog(user: Int!
             movie: Int!
             action: String!
