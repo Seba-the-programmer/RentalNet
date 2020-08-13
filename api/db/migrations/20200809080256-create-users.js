@@ -17,6 +17,14 @@ module.exports = {
       pass: {
         type: Sequelize.STRING
       },
+      vallet: {
+        type: Sequelize.FLOAT,
+        defaultValue: 0
+      },
+      isConfirmed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

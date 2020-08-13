@@ -16,6 +16,8 @@ export default`
         email: String!
         auth: String!
         pass: String!
+        vallet: Float!
+        isConfirmed: Boolean!
         code: String
     }
 

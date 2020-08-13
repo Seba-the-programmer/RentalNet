@@ -2,18 +2,43 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import * as auth from './authorization'
 import models from '../db/models'
+import nodemailer from 'nodemailer'
 
 const generateToken = (user) =>
-jwt.sign({ userId: user.id }, auth.SECRET, { expiresIn: '5d' })
+jwt.sign({ userId: user.id }, auth.SECRET, { expiresIn: '14d' })
 
 export const register = async (username, email, passRaw) => {
     const isUserExist = await models.users.findOne({ where: { username } })
-    if(!isUserExist) {
-        var pass = await bcrypt.hash(passRaw, 10)
+    if(isUserExist) {
+        throw new Error('User already exist!')
     }
-    else {
-        { throw new Error('User already exist!') }
-    }
+    const pass = await bcrypt.hash(passRaw, 10)
+
+    const etoken = await jwt.sign({ name: username }, auth.SECRET, {expiresIn: '1d'})
+    const url = `http://localhost:3005/confirmation/${etoken}`
+
+    let transport = nodemailer.createTransport({
+        host: "smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+        user: "19c3b5ed982d7f",
+        pass: "80bf119c4ce79d"
+        }
+    });
+
+    const message = {
+        from: 'no-reply@rentalNet.com',
+        to: email,
+        subject: 'Confirm your email',
+        html: `Click link to confirm your email => <a href="${url}">Link</a>`
+    };
+    transport.sendMail(message, function(err, info) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(info);
+        }
+    })
 
     return models.users.create({ username, email, pass })
 }
@@ -24,6 +49,10 @@ export const login = async (username, pass) => {
 
     const valid = await bcrypt.compare(pass, user.pass)
     if(!valid) { throw new Error('Incorrect password!') }
+
+    if(!user.isConfirmed) {
+        throw new Error('Your email is not confirmed. Please check your mail.')
+    }
 
     return {token: generateToken(user), user}
 }

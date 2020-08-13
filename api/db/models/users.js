@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   users.init({
     username: DataTypes.STRING,
     email: DataTypes.STRING,
-    pass: DataTypes.STRING
+    pass: DataTypes.STRING,
+    vallet: DataTypes.FLOAT,
+    isConfirmed: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'users',
