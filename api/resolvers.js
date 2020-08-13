@@ -19,10 +19,10 @@ export default{
         allLogs: (parent, { code }, { models }) =>
             authorize(models.logs.findAll(), code),
 
-        //getLogs: (parent, { user, movie, action, status, code }, { models }) =>
-            //authorize(models.logs.findAll({Where: {
-                //user: {user}, movie: {movie}, action: {action}, status: {status}
-            //}}), code) - not working at this moment
+        getLogs: (parent, { user, movie, action, status, code }, { models }) =>
+            authorize(models.logs.findAll({where: {
+                user: user, movie: movie, action: action, status: status
+            }}), code)
     },
 
     Mutation: {
@@ -33,27 +33,30 @@ export default{
 
         updateMovie: (parent, { id, title, desc, price, date, author, url, code }, { models }) =>
             authorize(
-                models.movies.update({ title, desc, price, date, author, url }, { Where: { id } }), code
+                models.movies.update({ title, desc, price, date, author, url }, { where: { id } }), code
             ),
 
         deleteMovie: (parent, { id, code }, { models }) =>
-            authorize(models.movies.destroy({ Where: { id } }), code),
+            authorize(models.movies.destroy({ where: { id } }), code),
 
         addUser: (parent, { username, email, pass, code }, { models }) =>
             authorize(userService.register(username, email, pass), code),
 
         updateUser: (parent, { id, username, email, pass, code }, { models }) =>
-            authorize(models.users.update({ username, email, auth, pass }, { Where: { id } }), code),
+            authorize(models.users.update({ username, email, auth, pass }, { where: { id } }), code),
 
         deleteUser: (parent, { id, code }, { models }) =>
-            authorize(models.users.destroy({ Where: { id } }), code),
+            authorize(models.users.destroy({ where: { id } }), code),
+
+        loginUser: (parent, { username, pass, code }, { models }) =>
+            authorize(userService.login(username, pass), code),
 
         createLog: (parent, { user, movie, action, status, code }, { models }) =>
             authorize(models.logs.create({ user, movie, action, status }), code),
 
         updateLog: (parent, { id, action, status, code }, { models }) =>
-            authorize(models.logs.update({ action, status }, { Where: { id } }), code),
+            authorize(models.logs.update({ action, status }, { where: { id } }), code),
         deleteLog: (parent, { id, code }, { models }) =>
-            authorize(models.logs.destroy({ Where: { id } }), code)
+            authorize(models.logs.destroy({ where: { id } }), code)
     }
 }

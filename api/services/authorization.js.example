@@ -2,6 +2,7 @@ import models from '../db/models'
 import * as userService from './user'
 
 export const AUTHORIZATION_CODE = 'example'
+export const SECRET = 'verySecretCode123'
 
 const authorize = (query, code) => {
     if(code == AUTHORIZATION_CODE)
@@ -9,7 +10,7 @@ const authorize = (query, code) => {
         return query
     }
     else {
-        return ""
+        { throw new Error('You are not allowed to be here!') }
     }
 }
 

@@ -19,6 +19,11 @@ export default`
         code: String
     }
 
+    type authUser {
+        token: String!
+        user: users!
+    }
+
     type logs {
         id: Int!
         user: Int!
@@ -70,6 +75,8 @@ export default`
             code: String): [Int!]
 
         deleteUser(id: Int! code: String): Int!
+
+        loginUser(username: String! pass: String! code: String): authUser
 
         createLog(user: Int!
             movie: Int!
