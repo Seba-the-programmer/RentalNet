@@ -33,3 +33,17 @@ export const update = async (id, passRaw) => {
 
     return models.users.update(pass, { where: { id } })
 }
+
+export const userMiddleware = async (req) => {
+    const token = req.headers.auth
+    try {
+        if(token) {
+            const { userId } = await jwt.verify(token, auth.SECRET)
+            req.userId = userId
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+    req.next()
+}

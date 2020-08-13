@@ -35,11 +35,18 @@ export default`
 
     type Query {
         allMovies(code: String): [movies!]!
+
         getMovie(id: Int! code: String): movies
+
         allUsers(code: String): [users!]!
+
         getUser(id: Int! code: String!): users
+
         allLogs(code: String): [logs!]!
+
         getLogs(user: Int movie: Int action: String status: String code: String): [logs!]!
+
+        me: users
     }
 
     type Mutation {

@@ -22,7 +22,16 @@ export default{
         getLogs: (parent, { user, movie, action, status, code }, { models }) =>
             authorize(models.logs.findAll({where: {
                 user: user, movie: movie, action: action, status: status
-            }}), code)
+            }}), code),
+
+        me: (parent, args, { models, userId }) => {
+            if(userId) {
+                return models.users.findOne({ where: { id: userId } })
+            }
+            else {
+                return null
+            }
+        }
     },
 
     Mutation: {
