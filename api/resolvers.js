@@ -1,6 +1,11 @@
 import * as userService from './services/user'
 import authorize from './services/authorization'
-import { query } from 'express'
+import Sequelize from 'sequelize'
+const Op = Sequelize.Op;
+const operatorsAliases = {
+  $like: Op.like,
+  $or: Op.or
+}
 
 export default{
     Query: {
@@ -19,10 +24,14 @@ export default{
         allLogs: (parent, { code }, { models }) =>
             authorize(models.logs.findAll(), code),
 
-        getLogs: (parent, { user, movie, action, status, code }, { models }) =>
-            authorize(models.logs.findAll({where: {
-                user: user, movie: movie, action: action, status: status
-            }}), code),
+        getLogs: (parent, { user, movie, action, status, code }, { models }) => {
+            if(!action) action = ""
+            if(!status) status = ""
+
+            return authorize(models.logs.findAll({where: {
+                user: user, movie: movie, action:{[Op.like]:`%${action}%`}, status:{[Op.like]:`%${status}%`}
+            }}), code)
+        },
 
         me: (parent, args, { models, userId }) => {
             if(userId) {
@@ -31,7 +40,9 @@ export default{
             else {
                 return null
             }
-        }
+        },
+        results: (parent, { query }, { models }) =>
+        models.movies.findAll({ where: {title:{ [Op.like]: `%${query}%` }} })
     },
 
     Mutation: {

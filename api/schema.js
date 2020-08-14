@@ -49,6 +49,8 @@ export default`
         getLogs(user: Int movie: Int action: String status: String code: String): [logs!]!
 
         me: users
+
+        results(query: String!): [movies!]!
     }
 
     type Mutation {

@@ -12,6 +12,12 @@ export const register = async (username, email, passRaw) => {
     if(isUserExist) {
         throw new Error('User already exist!')
     }
+    if(passRaw.length < 8) {
+        throw new Error('Password is too short!')
+    }
+    if(username.length > 20) {
+        throw new Error('username is too long!')
+    }
     const pass = await bcrypt.hash(passRaw, 10)
 
     const etoken = await jwt.sign({ name: username }, auth.SECRET, {expiresIn: '1d'})
@@ -64,7 +70,9 @@ export const register = async (username, email, passRaw) => {
                         border-radius: 15px;
                         padding: 5px;">Click me</button></a>
                         <div style="margin-top: 3vh;
-                        color:darkgrey;">This message has been generated automatically. Please don't respond to it.</div>
+                        color:darkgrey;
+                        margin-bottom: 2vh;
+                        font-size:0.8em;">This message has been generated automatically. Please don't respond to it.</div>
                     </div>
                 </body>`
     }
