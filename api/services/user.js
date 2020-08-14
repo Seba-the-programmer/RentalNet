@@ -18,20 +18,22 @@ export const register = async (username, email, passRaw) => {
     const url = `http://localhost:3005/confirmation/${etoken}`
 
     let transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        requireTLS: true,
         auth: {
-        user: "19c3b5ed982d7f",
-        pass: "80bf119c4ce79d"
+        user: 'rentalNetNoReply@gmail.com',
+        pass: auth.AUTHORIZATION_CODE
         }
-    });
+    })
 
     const message = {
-        from: 'no-reply@rentalNet.com',
+        from: 'rentalNetNoReply@gmail.com',
         to: email,
         subject: 'Confirm your email',
         html: `Click link to confirm your email => <a href="${url}">Link</a>`
-    };
+    }
     transport.sendMail(message, function(err, info) {
         if (err) {
             console.log(err)
