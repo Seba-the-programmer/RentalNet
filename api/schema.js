@@ -103,5 +103,7 @@ export default`
             code: String): [Int!]
 
         deleteLog(id: Int! code: String): Int!
+
+        resent(username: String! email:String!): Int!
     }
 `

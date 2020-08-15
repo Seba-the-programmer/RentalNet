@@ -79,7 +79,11 @@ export default{
 
         updateLog: (parent, { id, action, status, code }, { models }) =>
             authorize(models.logs.update({ action, status }, { where: { id } }), code),
+
         deleteLog: (parent, { id, code }, { models }) =>
-            authorize(models.logs.destroy({ where: { id } }), code)
+            authorize(models.logs.destroy({ where: { id } }), code),
+
+        resent: (parent, { username, email }, { models }) =>
+            userService.resent(username, email)
     }
 }
