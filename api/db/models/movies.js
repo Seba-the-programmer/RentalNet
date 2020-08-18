@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     desc: DataTypes.STRING,
     price: DataTypes.FLOAT,
     author: DataTypes.STRING,
+    category: DataTypes.STRING,
     date: DataTypes.STRING,
     url: DataTypes.STRING
   }, {

@@ -2,10 +2,11 @@ export default`
     type movies {
         id: Int!
         title: String!
-        Desc: String
+        Desc: String!
         price: Float!
         date: String
-        author: String
+        author: String!
+        category: String!
         url: String!
         code: String
     }
@@ -59,6 +60,7 @@ export default`
             price: Float!
             date: String
             author: String
+            category: String
             url: String!
             code: String): movies
 

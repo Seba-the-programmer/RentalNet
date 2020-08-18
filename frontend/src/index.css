@@ -1,5 +1,25 @@
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+.light {
+  background-color: #f0e5e5da;
+  color: #1f1b1b;
+}
+.light nav a {
+  color: whitesmoke;
+}
+a {
+  text-decoration: none;
+}
+:root {
+  font-size: 16px;
 }

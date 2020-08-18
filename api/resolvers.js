@@ -46,9 +46,9 @@ export default{
     },
 
     Mutation: {
-        addMovie: (parent, { title, desc, price, date, author, url, code }, { models }) =>
+        addMovie: (parent, { title, desc, price, date, author, category, url, code }, { models }) =>
             authorize(
-                models.movies.create({ title, desc, price, date, author, url }), code
+                models.movies.create({ title, desc, price, date, author, category, url }), code
                 ),
 
         updateMovie: (parent, { id, title, desc, price, date, author, url, code }, { models }) =>

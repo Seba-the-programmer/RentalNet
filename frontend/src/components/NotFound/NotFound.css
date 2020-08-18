@@ -1,0 +1,17 @@
+#wrap {
+    width: 100%
+}
+#header {
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 16vh;
+}
+#content {
+    text-align: center;
+    font-size: 1.7rem;
+    margin-top: 3vh;
+}
+a {
+    color: crimson;
+}

@@ -20,6 +20,9 @@ module.exports = {
       author: {
         type: Sequelize.STRING
       },
+      category: {
+        type: Sequelize.STRING
+      },
       date: {
         type: Sequelize.STRING
       },

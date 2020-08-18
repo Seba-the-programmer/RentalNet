@@ -1,0 +1,56 @@
+#nav__container {
+    background-color: rgb(228, 41, 79);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+#nav__logo {
+    width: 20vw;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #b8d0d3;
+    font-size: 3rem;
+    margin-left: 10px;
+}
+@media(min-width: 870px) {
+    #nav__logo::after {
+        content: 'ENTAL NET';
+        color: whitesmoke;
+        font-size: 2.3rem;
+        transition:all .5s ease-in-out;
+        transform: translateX(-8px);
+        opacity: 0;
+    }
+    #nav__logo:hover::after {
+        transform: translateX(8px);
+        opacity: 1;
+    }
+    .nav__option::after {
+        content: '';
+        height: 5px;
+        display: block;
+        background-color:whitesmoke;
+        transition: width .6s ease-in-out;
+        opacity: 0;
+        width: 0;
+    }
+    .nav__option:hover::after {
+        opacity: 1;
+        width: 100%;
+    }
+}
+#nav__options__box {
+    display: flex;
+    padding: 0;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 1.5rem;
+}
+.active {
+    color: #666666;
+}
+.nav__option {
+    padding: 10px;
+}

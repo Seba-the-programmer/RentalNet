@@ -7,6 +7,7 @@ import models from './db/models'
 import { userMiddleware } from './services/user'
 import * as auth from './services/authorization'
 import jwt from 'jsonwebtoken'
+import cors from 'cors'
 
 const schema = makeExecutableSchema({
     typeDefs,
@@ -14,7 +15,7 @@ const schema = makeExecutableSchema({
 })
 
 const app = express()
-
+app.use(cors())
 app.use(userMiddleware)
 
 app.get('/confirmation/:token', async (req, res) => {

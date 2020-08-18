@@ -1,0 +1,113 @@
+#login__form {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+@media(max-width: 884px) {
+    #login__form {
+        transform: skew(0deg) !important;
+    }
+}
+#login__content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    color: #1f1e1d;
+    font-size: 2.5rem;
+    text-align: center;
+}
+#login__content input {
+    background: transparent;
+    border: none;
+    border-bottom: #b8aaaa 2px solid;
+    color: #1f1e1d;
+    text-align: center;
+    margin-top: 5vh;
+    outline: none;
+    transition: border-bottom .3s ease-in-out;
+    width: 45%;
+    font-size:1.4rem;
+}
+#login__content input:focus {
+
+    border-bottom: #726a6a 2px solid;
+}
+#login__submit {
+    border: 1.6px #1f1e1d solid;
+    border-radius: 200px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 8px;
+    margin-top: 7vh;
+    color: whitesmoke;
+    background: #d82649;
+    width: 150px;
+
+}
+#login__title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2.4rem;
+    z-index: 5;
+    margin-top: 500px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    color: darkslategrey;
+}
+#login__wrap {
+    width:100vw;
+    height:100vh;
+    z-index: -10;
+    background-image: url(../../giftly.png);
+}
+@media(min-width: 885px) {
+    #login__form {
+        display: block;
+        background: rgb(228, 41, 79);
+        transform: skew(-20deg);
+        width:65%;
+        margin-left: -15vw;
+        z-index: 1;
+        height: 110vh;
+        margin-top: -5vh;
+        -webkit-box-shadow: 11px 9px 31px -5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 11px 9px 31px -5px rgba(0,0,0,0.75);
+        box-shadow: 11px 9px 31px -5px rgba(0,0,0,0.75);
+    }
+    #login__content {
+        transform: skew(20deg);
+        margin-left: 6vw;
+        color: whitesmoke;
+        margin-top: 17%;
+    }
+    #login__content input {
+        color: whitesmoke;
+    }
+    #login__title {
+        margin-top: 4vh;
+        margin-right: 5vw;
+        text-align: right;
+    }
+    #login__wrap {
+        background-image: url(../../background.gif);
+    }
+}
+#login__title--capital {
+    color: crimson;
+}
+#login__links {
+    font-size: 1.5rem;
+    margin-top: 5vh;
+    line-height: 1.8;
+}
+#login__links a {
+    color: #5e9ef3;
+}
