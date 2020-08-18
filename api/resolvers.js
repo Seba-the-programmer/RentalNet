@@ -42,7 +42,13 @@ export default{
             }
         },
         results: (parent, { query }, { models }) =>
-        models.movies.findAll({ where: {title:{ [Op.like]: `%${query}%` }} })
+        models.movies.findAll({ where: {
+            [Op.or]: {
+                title:{ [Op.like]: `%${query}%` },
+                author:{ [Op.like]: `%${query}%`},
+                category:{ [Op.like]: `%${query}%`}
+            }
+        }})
     },
 
     Mutation: {
