@@ -1,5 +1,5 @@
 #nav__container {
-    background-color: rgb(228, 41, 79);
+    background-color: #e4294f;
     width: 100%;
     height: 100%;
     display: flex;
@@ -14,11 +14,14 @@
     font-size: 3rem;
     margin-left: 10px;
 }
-@media(min-width: 870px) {
+#nav__about {
+    display: none;
+}
+@media(min-width: 920px) {
     #nav__logo::after {
         content: 'ENTAL NET';
         color: whitesmoke;
-        font-size: 2.3rem;
+        font-size: 1.7rem;
         transition:all .5s ease-in-out;
         transform: translateX(-8px);
         opacity: 0;
@@ -39,6 +42,9 @@
     .nav__option:hover::after {
         opacity: 1;
         width: 100%;
+    }
+    #nav__about {
+        display: block;
     }
 }
 #nav__options__box {

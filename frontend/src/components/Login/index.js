@@ -1,35 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Loading from '../Loading'
 import './Login.css'
 import { Link, Redirect} from 'react-router-dom'
 import AUTHORIZATION_CODE from '../../constants'
 
-class Login extends React.Component {
+class Login extends Component {
     state = {
         userValue: '',
         passValue: '',
         logged: false,
-        token: ''
+        token: '',
+        loading: false,
+        error: ''
     }
     render() {
         const login = async() => {
+            this.setState({loading: true})
+            document.body.classList.add("body--loading")
             const user = this.state.userValue
             const pass = this.state.passValue
 
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
+            let myHeaders = new Headers()
+            myHeaders.append("Content-Type", "application/json")
 
-            var graphql = JSON.stringify({
+            let graphql = JSON.stringify({
             query: `mutation{loginUser(username:"${user}" pass:"${pass}" code:"${AUTHORIZATION_CODE}"){token}}`,
             variables: {}
             })
-            var requestOptions = {
+            let requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: graphql,
             redirect: 'follow'
-            };
+            }
 
-            fetch("http://localhost:3005/api?", requestOptions)
+            await fetch("http://localhost:3005/api?", requestOptions)
             .then(response => response.text())
             .then(result => {
                 const final = JSON.parse(result)
@@ -37,9 +42,14 @@ class Login extends React.Component {
                     this.setState({token: final.data.loginUser.token})
                     this.setState({logged: true})
                 }
+                else {
+                    this.setState({error: final.errors[0].message})
+                }
             }
             )
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error))
+            document.body.classList.remove("body--loading")
+            this.setState({loading: false})
         }
         const parrallax = () => {
             document.addEventListener("mousemove", parrallax)
@@ -66,19 +76,27 @@ class Login extends React.Component {
         return (
             <div id="login__wrap" onLoad={parrallax()}>
                 <div id="login__form">
-                    <div id="login__content">
-                        <div id="login__header">Login into your account</div>
-                        <div><input type="text" placeholder="Username" value={this.state.userValue} onChange={userHandler}/></div>
-                        <div><input type="password" placeholder="Password"value={this.state.passValue} onChange={passHandler}/></div>
-                        <button id="login__submit" onClick={login.bind(this)}>Log in</button>
-                        <div id="login__links">
-                            <Link to="/emailHelp">Forgot the password?</Link><br/>
-                            <Link to="/register">Don't have account yet?</Link>
+                    <section>
+                        <div id="login__content">
+                            <div id="login__header">Login into your account</div>
+                            <div>
+                                <input type="text" placeholder="Username" value={this.state.userValue} onChange={userHandler}/>
+                            </div>
+                            <div>
+                                <input type="password" placeholder="Password" value={this.state.passValue} onChange={passHandler}/>
+                            </div>
+                            <span className="login__err">{this.state.error}</span>
+                            <button id="login__submit" onClick={login.bind(this)}>Log in</button>
+                            <div id="login__links">
+                                <Link to="/recovering">Forgot the password?</Link><br/>
+                                <Link to="/register">Don't have account yet?</Link>
+                            </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-                <div id="login__title"><span id="login__title--capital">R</span>ENTAL NET</div>
+                <header><div id="login__title"><span id="login__title--capital">R</span>ENTAL NET</div></header>
                 {this.state.logged && <Redirect to={`/home/${this.state.token}`}/>}
+                {this.state.loading && <Loading/> }
             </div>
         )
     }
