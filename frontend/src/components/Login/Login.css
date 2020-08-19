@@ -3,8 +3,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    display: flex;
-    align-items: center;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -44,7 +42,7 @@
     cursor: pointer;
     font-size: 1.5rem;
     padding: 8px;
-    margin-top: 7vh;
+    margin-top: 3vh;
     color: whitesmoke;
     background: #d82649;
     width: 150px;
@@ -110,4 +108,11 @@
 }
 #login__links a {
     color: #5e9ef3;
+}
+.login__err {
+    font-size: 1.4rem;
+    color: #c5133f;
+    display: block;
+    margin-top: 5.5vh;
+    font-weight: bold;
 }
