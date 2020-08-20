@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
-//import AUTHORIZATION_CODE from '../../constants'
+import AUTHORIZATION_CODE from '../../constants'
 import Navigation from '../Navigation'
 
 class Home extends Component {

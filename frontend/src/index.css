@@ -8,7 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Roboto', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .light {
   background-color: #f0e5e5da;
