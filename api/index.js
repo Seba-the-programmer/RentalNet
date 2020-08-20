@@ -29,7 +29,7 @@ app.get('/confirmation/:token', async (req, res) => {
     console.log(e)
   }
 
-  return res.redirect('http://localhost:3005/login');
+  return res.redirect('http://localhost:3001');
 })
 
 app.use('/api',

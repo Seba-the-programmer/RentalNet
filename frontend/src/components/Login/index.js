@@ -74,7 +74,7 @@ class Login extends Component {
         const userHandler = inputUserUpdate.bind(this)
         const passHandler = inputPassUpdate.bind(this)
         return (
-            <div id="login__wrap" onLoad={parrallax()}>
+            <div id="landing__wrap" onLoad={parrallax()}>
                 <div id="login__form">
                     <section>
                         <div id="login__content">
@@ -85,9 +85,9 @@ class Login extends Component {
                             <div>
                                 <input type="password" placeholder="Password" value={this.state.passValue} onChange={passHandler}/>
                             </div>
-                            <span className="login__err">{this.state.error}</span>
-                            <button id="login__submit" onClick={login.bind(this)}>Log in</button>
-                            <div id="login__links">
+                            <span className="landing__err">{this.state.error}</span>
+                            <button id="landing__submit" onClick={login.bind(this)}>Log in</button>
+                            <div id="landing__links">
                                 <Link to="/recovering">Forgot the password?</Link><br/>
                                 <Link to="/register">Don't have account yet?</Link>
                             </div>
@@ -96,7 +96,7 @@ class Login extends Component {
                 </div>
                 <header><div id="login__title"><span id="login__title--capital">R</span>ENTAL NET</div></header>
                 {this.state.logged && <Redirect to={`/home/${this.state.token}`}/>}
-                {this.state.loading && <Loading/> }
+                {this.state.loading && <Loading/>}
             </div>
         )
     }

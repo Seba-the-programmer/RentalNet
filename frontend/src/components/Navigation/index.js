@@ -23,13 +23,13 @@ class Navigation extends Component {
                 <Link to={linkHandler('/home')}><div id="nav__logo">R</div></Link>
                 <div id="nav__options__box">
                     <Link to={linkHandler('/search')}>
-                        <div className={navHandler('/search')}>SEARCH</div>
+                        <div className={navHandler(`/search//${this.props.token}`)}>SEARCH</div>
                     </Link>
                     <Link to={linkHandler('/library')}>
-                        <div className={navHandler('/library')}>LIBRARY</div>
+                        <div className={navHandler(`/library/${this.props.token}`)}>LIBRARY</div>
                     </Link>
                     <Link to={linkHandler('/account')}>
-                        <div className={navHandler('/account')}>MY ACCOUNT</div>
+                        <div className={navHandler(`/account/${this.props.token}`)}>MY ACCOUNT</div>
                     </Link>
                     <Link to="/about">
                         <div id="nav__about" className={navHandler('/about')}>ABOUT</div>
