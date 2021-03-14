@@ -2,7 +2,7 @@ export default`
     type movies {
         id: Int!
         title: String!
-        Desc: String!
+        desc: String!
         price: Float!
         date: String
         author: String!

@@ -100,7 +100,7 @@ class Register extends Component {
         }
         const inputEmailUpdate = (event) => {
             const newValue = event.target.value
-            const correctAddress = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+            const correctAddress = /^(([^<>()\].,;:\s@"]+(\.[^<>()\].,;:\s@"]+)*)|(".+"))@(([^<>()[\],;:\s@"]+\.)+[^<>()[\],;:\s@"]{2,})$/i
             this.setState({emailValue: newValue})
             const email = correctAddress.test(String(newValue).toLowerCase())
             if(!email) {
@@ -158,7 +158,7 @@ class Register extends Component {
                     </div>
                 </div>
                 {this.state.loading && <Loading/> }
-                {this.state.registered && <Redirect to={`resgister/done/${this.state.id}`}/>}
+                {this.state.registered && <Redirect to={`register/done/${this.state.id}`}/>}
             </div>
         )
     }

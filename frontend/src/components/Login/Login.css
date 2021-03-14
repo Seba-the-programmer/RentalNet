@@ -61,8 +61,8 @@
     color: darkslategrey;
 }
 #landing__wrap {
-    width:100vw;
-    height:100vh;
+    width:100%;
+    height:110vh;
     z-index: -10;
     background-image: url(../../giftly.png);
 }
@@ -95,6 +95,7 @@
         text-align: right;
     }
     #landing__wrap {
+        height: 100vh;
         background-image: url(../../background.gif);
     }
 }

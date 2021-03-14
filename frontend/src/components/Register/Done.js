@@ -11,6 +11,9 @@ class Done extends Component {
         loading: false,
         emailValue: ''
     }
+
+    abortController = new AbortController()
+
     componentDidMount() {
         const id = this.props.match.params.id
         this.setState({loading: true})
@@ -30,7 +33,7 @@ class Done extends Component {
         redirect: 'follow'
         }
 
-        fetch("http://localhost:3005/api?", requestOptions)
+        fetch("http://localhost:3005/api?", requestOptions, {signal: this.abortController.signal})
         .then(response => response.text())
         .then(result => {
             const final = JSON.parse(result)
@@ -44,6 +47,9 @@ class Done extends Component {
         document.body.classList.remove("body--loading")
         this.setState({loading: false})
     }
+    componentWillUnmount() {
+        this.abortController.abort()
+    }
     render() {
         const auth = async () => {
 
@@ -51,12 +57,16 @@ class Done extends Component {
         const send = async () => {
             this.setState({loading: true})
             document.body.classList.add("body--loading")
+            const id = this.props.match.params.id
 
             let myHeaders = new Headers()
             myHeaders.append("Content-Type", "application/json")
 
             let graphql = JSON.stringify({
-            query: `mutation{resent(username:"${this.state.username}" email:"${this.state.emailValue}")}`,
+            query: `mutation{
+                resent(username:"${this.state.username}" email:"${this.state.emailValue}")
+                updateUser(id:${id} email:"${this.state.emailValue}" code:"${AUTHORIZATION_CODE}"){email}
+            }`,
             variables: {}
             })
             let requestOptions = {
